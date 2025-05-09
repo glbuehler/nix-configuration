@@ -55,6 +55,14 @@
     userEmail = "gideonbuehler18@gmail.com";
   };
 
+  programs.tmux = {
+    enable = true;
+    prefix = "C-a";
+    shell = "${pkgs.bash}/bin/bash";
+    keyMode = "vi";
+    extraConfig = builtins.readFile ./dotfiles/tmux.conf;
+  };
+
   programs.ghostty.enable = true;
   programs.ghostty.settings = {
     font-size = 18;
