@@ -72,7 +72,6 @@
   # plain files is through 'home.file'.
   home.file = {
     ".bashrc".source = ./dotfiles/bashrc;
-    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim;
   };
 
   # Home Manager can also manage your environment variables through
