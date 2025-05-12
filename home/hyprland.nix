@@ -106,12 +106,15 @@
       layer = "top";
       reload_style_on_change = true;
       position = "top";
-      modules-left = [ "clock" ];
-      modules-center = [ "hyprland/workspaces" ];
+      modules-left = [ "hyprland/workspaces" ];
+      modules-center = [ "clock" ];
       modules-right = [ "custom/mic" "pulseaudio" "battery" "bluetooth" "network" ];
+      "hyprland/workspaces" = {
+        format = "{name}";
+      };
       "clock" = {
         interval = 60;
-        format = "{:%H:%M}";
+        format = "{:%d/%m/%Y - %H:%M}";
         tooltip-format = "<tt><small>{calendar}</small></tt>";
         calendar = {
           mode = "year";
@@ -124,14 +127,6 @@
             weekdays = "<span color='#ffcc66'><b>{}</b></span>";
             today = "<span color='#ff6699'><b><u>{}</u></b></span>";
           };
-        };
-      };
-      "hyprland/workspaces" = {
-        format = "{icon}";
-        format-icons = {
-          active = "⬤"; # ◯
-          default = "⬤";
-          empty = "⬤";
         };
       };
       "custom/mic" = {
