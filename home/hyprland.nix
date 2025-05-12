@@ -42,7 +42,7 @@
         "$mod, 7, workspace, 7"
         "$mod, 8, workspace, 8"
         "$mod, 9, workspace, 9"
-        "$mod, 0, workspace, 0"
+        "$mod, 0, workspace, 10"
 
         "SHIFT $mod, 1, movetoworkspace, 1"
         "SHIFT $mod, 2, movetoworkspace, 2"
@@ -53,7 +53,7 @@
         "SHIFT $mod, 7, movetoworkspace, 7"
         "SHIFT $mod, 8, movetoworkspace, 8"
         "SHIFT $mod, 9, movetoworkspace, 9"
-        "SHIFT $mod, 0, movetoworkspace, 0"
+        "SHIFT $mod, 0, movetoworkspace, 10"
 
         ", XF86MonBrightnessUp, exec, brightnessctl -e4 -n1 set +8%"
         ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n1 set 8%-"
