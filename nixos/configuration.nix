@@ -46,9 +46,14 @@
   services.seatd.enable = true;
   services.blueman.enable = true;
   services.tlp.enable = true;
-  services.xserver.displayManager.gdm = {
+  services.greetd = {
     enable = true;
-    wayland = true;
+    settings = {
+      initial_session = {
+        command = "${pkgs.lib.getExe config.programs.hyprland.package} --config ${builtins.readFile ./greetd/hyprland.conf}";
+        user = "greeter";
+      };
+    };
   };
 
   security.pam.services.hyprlock = {};
@@ -73,6 +78,13 @@
     vim
   ];
 
+  programs.regreet = {
+    enable = true;
+    theme.name = "Adwaita-dark";
+    settings = {
+      GTK.application_prefer_dark_theme = true;
+    };
+  };
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
