@@ -82,7 +82,15 @@
     enable = true;
     theme.name = "Adwaita-dark";
     settings = {
-      GTK.application_prefer_dark_theme = true;
+      GTK = {
+        cursor_theme_name = "Adwaita";
+      };
+      background = {
+        path = "/usr/share/backgrounds/regreet-bg.jpeg";
+        fit = "Cover";
+      };
+      appearance.greeting_msg = "NixOs, btw";
+      "widget.clock".format = "%H:%M";
     };
   };
   programs.hyprland = {
