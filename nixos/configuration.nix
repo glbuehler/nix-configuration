@@ -46,6 +46,10 @@
   services.seatd.enable = true;
   services.blueman.enable = true;
   services.tlp.enable = true;
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+  };
 
   security.pam.services.hyprlock = {};
 
