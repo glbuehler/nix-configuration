@@ -71,6 +71,7 @@
     background = "#1a1b26";
     window-decoration = "none";
     app-notifications = "no-clipboard-copy";
+    theme = "tokyonight";
   };
 
   services.dunst.enable = true;
