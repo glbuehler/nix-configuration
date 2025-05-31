@@ -14,7 +14,15 @@
         "[workspace 2 silent] firefox"
       ];
       "$terminal" = "ghostty";
-      animations.enabled = false;
+      animations = {
+        enabled = true;
+        animation = [
+          "global, 1, 2, ease-in-out"
+        ];
+        bezier = [
+          "ease-in-out, 0.42, 0, 0.58, 1"
+        ];
+      };
       env = [
         "XCURSOR_SIZE, 16"
         "HYPRCURSOR_SIZE,6"
@@ -81,9 +89,9 @@
       general = {
         allow_tearing = false;
         layout = "dwindle";
-        gaps_in = 0;
-        gaps_out = 0;
-        border_size = 1;
+        gaps_in = 6;
+        gaps_out = 8;
+        border_size = 2;
         "col.active_border" = "rgba(808080ff)";
         "col.inactive_border" = "rgba(595959ff)";
       };
@@ -97,6 +105,11 @@
       ];
       misc.force_default_wallpaper = 1;
       misc.vfr = true;
+      decoration = {
+        blur.enabled = false;
+        rounding = 6;
+        inactive_opacity = 0.7;
+      };
     };
   };
 
@@ -231,8 +244,8 @@
 
   services.hyprpaper.enable = true;
   services.hyprpaper.settings = {
-    preload = [ "~/Pictures/pigeon.jpeg" ];
-    wallpaper = [ ", ~/Pictures/pigeon.jpeg" ];
+    preload = [ "~/wallpapers/ship.png" ];
+    wallpaper = [ "~/wallpapers/ship.png" ];
   };
 
   services.hypridle.enable = true;
