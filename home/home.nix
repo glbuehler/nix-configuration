@@ -64,6 +64,7 @@
     extraConfig = builtins.readFile ./dotfiles/tmux.conf;
   };
 
+  programs.wezterm.enable = true;
   programs.ghostty.enable = true;
   programs.ghostty.settings = {
     font-size = 18;

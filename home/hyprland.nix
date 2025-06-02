@@ -13,7 +13,7 @@
         "[workspace 1 silent] $terminal"
         "[workspace 2 silent] firefox"
       ];
-      "$terminal" = "ghostty";
+      "$terminal" = "wezterm";
       animations = {
         enabled = true;
         animation = [
@@ -197,7 +197,7 @@
         tooltip-format-disconnected = "no connection";
         tooltip-format-wifi = "{essid} ({signalStrength}%)";
         tooltip-format-ethernet = "{ifname} 🖧 ";
-        on-click = "ghostty --command=nmtui";
+        on-click = "wezterm --command=nmtui";
       };
     };
   };
@@ -244,8 +244,8 @@
 
   services.hyprpaper.enable = true;
   services.hyprpaper.settings = {
-    preload = [ "~/wallpapers/ship.png" ];
-    wallpaper = [ "~/wallpapers/ship.png" ];
+    preload = [ "~/wallpapers/ship_1920x1080.png" ];
+    wallpaper = [ ", ~/wallpapers/ship_1920x1080.png" ];
   };
 
   services.hypridle.enable = true;
