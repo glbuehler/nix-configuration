@@ -49,8 +49,8 @@
   services.greetd = {
     enable = true;
     settings = {
-      initial_session = {
-        command = "${pkgs.lib.getExe config.programs.hyprland.package} --config ${builtins.readFile ./greetd/hyprland.conf}";
+      default_session = {
+        command = "${pkgs.cage}/bin/cage ${pkgs.greetd.regreet}/bin/regreet";
         user = "greeter";
       };
     };
@@ -75,7 +75,6 @@
   environment.systemPackages = with pkgs; [
     home-manager
     gcc
-    vim
   ];
 
   programs.regreet = {
