@@ -1,20 +1,12 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 {
   imports =
     [
-      ./hardware-configuration.nix  # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      ./greet.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Home Manager
-  # home-manager.useGlobalPkgs = true;
-  # home-manager.useUserPackages = true;
-  # home-manager.users.gideon = import /home/gideon/.config/home-manager/home.nix;
 
   # Bootloader
   boot.loader.systemd-boot.enable = false;
@@ -46,16 +38,6 @@
   services.seatd.enable = true;
   services.blueman.enable = true;
   services.tlp.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.cage}/bin/cage ${pkgs.greetd.regreet}/bin/regreet";
-        user = "greeter";
-      };
-    };
-  };
-
   security.pam.services.hyprlock = {};
 
   hardware.graphics.enable = true;
@@ -67,7 +49,6 @@
     isNormalUser = true;
     description = "gideon";
     extraGroups = [ "wheel" "networkmanager" "power" ];
-    packages = with pkgs; [];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -77,21 +58,6 @@
     gcc
   ];
 
-  programs.regreet = {
-    enable = true;
-    theme.name = "Adwaita-dark";
-    settings = {
-      GTK = {
-        cursor_theme_name = "Adwaita";
-      };
-      background = {
-        path = "/usr/share/backgrounds/regreet-bg.jpeg";
-        fit = "Cover";
-      };
-      appearance.greeting_msg = "NixOs, btw";
-      "widget.clock".format = "%H:%M";
-    };
-  };
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -99,13 +65,5 @@
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.11";
 }
