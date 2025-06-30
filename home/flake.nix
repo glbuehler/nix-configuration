@@ -2,9 +2,9 @@
   description = "Home Manager configuration of gideon";
 
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-25.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kickstart-nix = {

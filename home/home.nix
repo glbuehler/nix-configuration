@@ -24,17 +24,17 @@
     cursorTheme.name = "Adwaita";
   };
 
-  # home.pointerCursor = {
-  #   enable = true;
-  #   x11.enable = true;
-  #   gtk.enable = true;
-  #   hyprcursor.enable = true;
-  #   hyprcursor.size = 16;
-  #   package = pkgs.vanilla-dmz;
-  #   name = "Vanilla-DMZ";
-  #   size = 16;
-  # };
-  #
+  home.pointerCursor = {
+    enable = true;
+    x11.enable = true;
+    gtk.enable = true;
+    hyprcursor.enable = true;
+    hyprcursor.size = 16;
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ";
+    size = 16;
+  };
+
   home.packages = with pkgs; [ 
     brightnessctl
     discord
@@ -48,7 +48,7 @@
 
     # fonts
     font-awesome
-    (pkgs.nerdfonts.override { fonts = [ "DroidSansMono" ]; })
+    nerd-fonts.droid-sans-mono
   ];
 
   programs.git = {
