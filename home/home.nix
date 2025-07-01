@@ -44,7 +44,7 @@
     libnotify
     pulseaudio
     nvim-pkg
-    cargo
+    rustup
 
     # fonts
     font-awesome
