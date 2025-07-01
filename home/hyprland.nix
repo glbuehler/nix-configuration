@@ -104,7 +104,7 @@
         "suppressevent maximize, class:.*"
       ];
       misc.force_default_wallpaper = 1;
-      misc.vfr = true;
+      misc.vfr = false;
       decoration = {
         blur.enabled = false;
         rounding = 6;
