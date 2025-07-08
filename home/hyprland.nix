@@ -8,12 +8,12 @@
     settings = {
       monitor = "eDP-1,1920x1080@60,0x0,1";
       "$mod" = "SUPER";
+      "$terminal" = "ghostty";
       exec-once = [
         "waybar"
         "[workspace 1 silent] $terminal"
         "[workspace 2 silent] firefox"
       ];
-      "$terminal" = "wezterm";
       animations = {
         enabled = true;
         animation = [
