@@ -197,7 +197,7 @@
         tooltip-format-disconnected = "no connection";
         tooltip-format-wifi = "{essid} ({signalStrength}%)";
         tooltip-format-ethernet = "{ifname} 🖧 ";
-        on-click = "wezterm --command=nmtui";
+        on-click = "ghostty --command=nmtui";
       };
     };
   };
