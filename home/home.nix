@@ -73,6 +73,14 @@
     window-decoration = "none";
     app-notifications = "no-clipboard-copy";
     theme = "tokyonight";
+    keybind = [
+      "clear"
+      "ctrl+shift+c=copy_to_clipboard"
+      "ctrl+shift+v=paste_from_clipboard"
+      "ctrl+plus=increase_font_size:2"
+      "ctrl+minus=decrease_font_size:2"
+    ];    
+    confirm-close-surface = false;
   };
 
   services.dunst.enable = true;
