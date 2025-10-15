@@ -55,6 +55,9 @@
     enable = true;
     userName = "Gideon Bühler";
     userEmail = "gideonbuehler18@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
 
   programs.tmux = {
