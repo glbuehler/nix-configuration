@@ -220,7 +220,7 @@
         position = "0, 180";
       }
       {
-        text = "Hi <span color='##32a877'>$USER</span> :)";
+        text = "<span color='##32a877'>NixOS</span>, btw";
         font_size = 20;
         position = "0, 80";
       }
