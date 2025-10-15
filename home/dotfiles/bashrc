@@ -61,10 +61,13 @@ parse_git_branch() {
 }
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;30;44m\] \w\[\033[01;39;44m\] \[\033[01;34;49m\]\[\033[00m\]$([ "$(parse_git_branch)" ] && echo " \[\033[01;34m\] $(parse_git_branch)")\[\033[00m\] '
+    COL=$(($RANDOM%7+1))
+    PS1='$(echo '"'"'\[\033[01;30;4'$COL'm\] \w'"')"'\[\033[01;39;4'$COL'm\] \[\033[01;3'$COL';49m\]\[\033[00m\]'
+    PS1=${PS1}' $([ $(parse_git_branch) ] && echo '"'"'\[\033[01;3'$COL'm\] '"'"'$(parse_git_branch)'"'"'\[\033[00m\] '"')"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
+
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
