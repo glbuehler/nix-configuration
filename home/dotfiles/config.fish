@@ -47,9 +47,9 @@ set prompt_color $colors[(random 1 (count $colors))]
 set splash $splashes[(random 1 (count $splashes))]
 
 function fish_greeting
-    echo -s \
+    echo -s -e \
         (set_color $prompt_color) \
-        $splash \
+        "\n$splash\n" \
         (set_color normal)
 
 end
