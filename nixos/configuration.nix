@@ -8,6 +8,9 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  programs.fish.enable = true;
+
+
   # Bootloader
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -48,6 +51,7 @@
   users.users.gideon = {
     isNormalUser = true;
     description = "gideon";
+    shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" "power" ];
   };
 

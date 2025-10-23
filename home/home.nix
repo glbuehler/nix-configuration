@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   home.username = "gideon";
   home.homeDirectory = "/home/gideon";
@@ -7,6 +6,11 @@
   home.stateVersion = "24.05";
 
   imports = [ ./hyprland.nix ];
+
+  programs.fish = {
+    enable = true;
+    shellInit = builtins.readFile ./dotfiles/config.fish;
+  };
 
   dconf = {
     enable = true;
@@ -63,12 +67,13 @@
   programs.tmux = {
     enable = true;
     prefix = "C-a";
-    shell = "${pkgs.bash}/bin/bash";
+    shell = "${pkgs.fish}/bin/fish";
     keyMode = "vi";
     extraConfig = builtins.readFile ./dotfiles/tmux.conf;
   };
 
   programs.ghostty.enable = true;
+  programs.ghostty.enableFishIntegration = true;
   programs.ghostty.settings = {
     font-size = 18;
     mouse-hide-while-typing = true;
