@@ -61,6 +61,7 @@
     userEmail = "gideonbuehler18@gmail.com";
     extraConfig = {
       init.defaultBranch = "main";
+      core.editor = "${pkgs.nvim-pkg}/bin/nvim";
     };
   };
 
