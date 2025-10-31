@@ -81,3 +81,7 @@ function fish_prompt
         (set_color normal) \
         "$user_char "
 end
+
+# Keybinds
+
+bind \cy accept-autosuggestion
