@@ -49,6 +49,9 @@
     pulseaudio
     nvim-pkg
     rustup
+    zip
+    unzip
+    gnutar
 
     # fonts
     font-awesome
