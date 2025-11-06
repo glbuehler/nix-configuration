@@ -65,7 +65,7 @@ end
 function fish_prompt
     set --local user_char '$'
     if fish_is_root_user
-        set user_char '#'
+        set --local user_char '#'
     end
 
     set --local workdir (string replace --regex "^$HOME" '~' $PWD)
@@ -85,3 +85,9 @@ end
 # Keybinds
 
 bind \cy accept-autosuggestion
+
+
+# Aliases
+
+alias man="man -P 'nvim +Man!'"
+

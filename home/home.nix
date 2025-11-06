@@ -65,6 +65,9 @@
     extraConfig = {
       init.defaultBranch = "main";
       core.editor = "${pkgs.nvim-pkg}/bin/nvim";
+      diff.tool = "nvim";
+      difftool.nvim.cmd = "nvim -d \"$LOCAL\" \"$REMOTE\"";
+      difftool.prompt = false;
     };
   };
 
