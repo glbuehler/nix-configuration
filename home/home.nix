@@ -52,6 +52,9 @@
     zip
     unzip
     gnutar
+    htop
+    fastfetch
+    wl-clipboard
 
     # fonts
     font-awesome
