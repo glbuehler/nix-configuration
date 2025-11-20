@@ -13,7 +13,6 @@
 
   programs.fish.enable = true;
 
-
   # Bootloader
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -24,9 +23,17 @@
     useOSProber = true;
   };
 
+  # Networking
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
+  # Filesystems
+  fileSystems."/tmp" = {
+    fsType = "tmpfs";
+    options = [ "mode=1777" "size=8G" ];
+  };
+
+  # Time
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
