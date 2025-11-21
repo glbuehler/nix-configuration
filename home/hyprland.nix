@@ -78,6 +78,8 @@
         kb_model = "";
         kb_options = "";
         kb_rules = "";
+        repeat_delay = 250;
+        repeat_rate = 40;
 
         follow_mouse = 1;
         sensitivity = 0.0;
