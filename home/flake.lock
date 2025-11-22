@@ -60,11 +60,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1724097937,
-        "narHash": "sha256-Q4tgm8ZHAQUdvsNft86MqIbHQAm7OF7RT/wwYWXqSdY=",
+        "lastModified": 1755304025,
+        "narHash": "sha256-xVKfjFwc0zMbLMjLTiHz+0llggkjs93SmHkhaa9S3M4=",
         "owner": "mrcjkb",
         "repo": "nix-gen-luarc-json",
-        "rev": "b36b69c4ded9f31b079523bc452e23458734cf00",
+        "rev": "1865b0ebb753ae5324d7381b1fa8c98c04ec7509",
         "type": "github"
       },
       "original": {
@@ -151,11 +151,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763820768,
-        "narHash": "sha256-Tu0zMSwlZJbI+TukXrBOXzASjaPpuczHSnyLCt2qqyY=",
+        "lastModified": 1763821456,
+        "narHash": "sha256-wKx1XEquI9ApkoaY0/dTMHu8w2kd6rkbsuATnyiZKE0=",
         "owner": "glbuehler",
         "repo": "kickstart-nix.nvim",
-        "rev": "2f82f8d93daa29a314bb8c3d0aa8937eaab1af54",
+        "rev": "c7a25a669949a3dabd202adb0fcde5ed2b32c4bd",
         "type": "github"
       },
       "original": {
