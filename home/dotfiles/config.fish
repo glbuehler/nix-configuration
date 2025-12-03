@@ -89,5 +89,5 @@ bind \cy accept-autosuggestion
 
 # Aliases
 
-alias man="man -P 'nvim +Man!'"
+# alias man="man -P 'nvim +Man!'"
 
