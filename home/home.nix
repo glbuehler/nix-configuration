@@ -3,6 +3,8 @@
   home.username = "gideon";
   home.homeDirectory = "/home/gideon";
 
+  news.display = "silent";
+
   home.stateVersion = "24.05";
 
   imports = [ ./hyprland.nix ];
