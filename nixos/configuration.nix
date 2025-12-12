@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./greet.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./greet.nix
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -12,6 +11,12 @@
   programs.nix-ld.libraries = [];
 
   programs.fish.enable = true;
+
+  boot.kernelParams = [
+    "amdgpu.noretry=0"
+    "amdgpu.gpu_recovery=1"
+    "pcie_aspm=off"
+  ];
 
   # Bootloader
   boot.loader.systemd-boot.enable = false;
