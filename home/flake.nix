@@ -13,7 +13,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, kickstart-nix, ... }:
+  outputs = { nixpkgs, home-manager, kickstart-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -24,6 +24,10 @@
     in {
       homeConfigurations."gideon" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+
+        extraSpecialArgs = {
+          inherit inputs;
+        };
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
