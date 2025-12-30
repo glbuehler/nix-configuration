@@ -1,5 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    hyprshot
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -71,6 +74,15 @@
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ", switch:Lid Switch, exec, hyprlock"
+
+        "$mod, s, exec, hyprshot -m window -m active --clipboard-only"
+        "SHIFT $mod, s, exec, hyprshot -m window -m active --output-folder ~/Pictures"
+        "CTRL $mod, s, exec, hyprshot -m region --clipboard-only"
+        "CTRL SHIFT $mod, s, exec, hyprshot -m region --output-folder ~/Pictures"
+      ];
+      bindm = [
+        "$mod, mouse:272, resizewindow"
+        "SHIFT $mod, mouse:272, movewindow"
       ];
       input = {
         kb_layout = "de";
