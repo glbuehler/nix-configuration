@@ -128,6 +128,7 @@
   };
 
   programs.waybar.enable = true;
+  programs.waybar.style = builtins.readFile ./dotfiles/waybar-style.css;
   programs.waybar.settings = {
     mainBar = {
       layer = "top";
