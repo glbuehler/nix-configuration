@@ -1,21 +1,24 @@
 { pkgs, ... }:
+let
+  terminal = "${pkgs.ghostty}/bin/ghostty";
+in
 {
+
   home.packages = with pkgs; [
     hyprshot
   ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
     portalPackage = null;
 
     settings = {
-      monitor = "eDP-1,1920x1080@60,0x0,1";
       "$mod" = "SUPER";
-      "$terminal" = "ghostty";
       exec-once = [
-        "waybar"
-        "[workspace 1 silent] $terminal"
-        "[workspace 2 silent] firefox"
+        "${pkgs.waybar}/bin/waybar"
+        "[workspace 1 silent] ${terminal}"
+        "[workspace 2 silent] ${pkgs.firefox}/bin/firefox"
       ];
       animations = {
         enabled = true;
@@ -31,7 +34,7 @@
         "HYPRCURSOR_SIZE,6"
       ];
       bind = [
-        "$mod, return, exec, $terminal"
+        "$mod, return, exec, ${terminal}"
         "$mod, q, killactive"
         "$mod, d, exec, wofi --show drun"
 
@@ -43,6 +46,9 @@
         "SHIFT $mod, l, movewindow, r"
         "SHIFT $mod, k, movewindow, u"
         "SHIFT $mod, j, movewindow, d"
+
+        "$mod, f, togglefloating"
+        "SHIFT $mod, f, fullscreen"
 
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
@@ -94,11 +100,6 @@
         repeat_rate = 40;
 
         follow_mouse = 1;
-        sensitivity = 0.0;
-        touchpad = {
-          natural_scroll = true;
-          scroll_factor = 0.7;
-        };
       };
       general = {
         allow_tearing = false;
@@ -128,15 +129,9 @@
   };
 
   programs.waybar.enable = true;
-  programs.waybar.style = builtins.readFile ./dotfiles/waybar-style.css;
+  programs.waybar.style = builtins.readFile ./waybar-style.css;
   programs.waybar.settings = {
     mainBar = {
-      layer = "top";
-      reload_style_on_change = true;
-      position = "top";
-      modules-left = [ "hyprland/workspaces" ];
-      modules-center = [ "clock" ];
-      modules-right = [ "custom/mic" "pulseaudio" "battery" "bluetooth" "network" ];
       "hyprland/workspaces" = {
         format = "{name}";
       };
@@ -159,7 +154,7 @@
       };
       "custom/mic" = {
         format = "{}";
-        exec = "~/.config/waybar/scripts/mic_watcher.sh";
+        exec = ./mic_watcher.sh;
         return-type = "json";
       };
       "pulseaudio" = {
@@ -196,12 +191,12 @@
         format-icons = [ "󰁻" "󰁼" "󰁾" "󰂀" "󰂂" "󰁹" ];
       };
       "bluetooth" = {
-	format = "";
-	format-disabled = "";
-	format-connected = "{num_connections} ";
-	tooltip-format = "{controller_alias}\t{controller_address}";
-	tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
-	tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+        format = "";
+        format-disabled = "";
+        format-connected = "{num_connections} ";
+        tooltip-format = "{controller_alias}\t{controller_address}";
+        tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+        tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
       };
       "network" = {
         interval = 30;
@@ -212,7 +207,7 @@
         tooltip-format-disconnected = "no connection";
         tooltip-format-wifi = "{essid} ({signalStrength}%)";
         tooltip-format-ethernet = "{ifname} 🖧 ";
-        on-click = "ghostty --command=nmtui";
+        on-click = "${terminal} --command=nmtui";
       };
     };
   };
@@ -226,7 +221,7 @@
       outline_thickness = 0;
     };
     background = {
-      path = "~/Pictures/hyprlock-bg.jpeg";
+      path = "~/Pictures/hyprlock-bg";
     };
     label = [ 
       {
@@ -245,10 +240,12 @@
   programs.wofi.enable = true;
   programs.wofi.settings = {
     allow_images = true;
-    key-exit = "Ctrl c";
+    key_exit = "Ctrl-c";
+    key_up = "Ctrl-p";
+    key_down = "Ctrl-n";
   };
   programs.wofi.style = ''
-    #outer-box {
+    #window {
       border-radius: 6px;
     }
     #window, #input {
@@ -259,8 +256,8 @@
 
   services.hyprpaper.enable = true;
   services.hyprpaper.settings = {
-    preload = [ "~/wallpapers/ship_1920x1080.png" ];
-    wallpaper = [ ", ~/wallpapers/ship_1920x1080.png" ];
+    preload = [ "~/Pictures/wallpaper" ];
+    wallpaper = [ ", ~/Pictures/wallpaper" ];
   };
 
   services.hypridle.enable = true;
@@ -269,32 +266,5 @@
       lock_cmd = "pidof hyprlock || hyprlock";
       before_sleep_cmd = "pidof hyprlock || hyprlock";
     };
-    listener = [
-      {
-        timeout = 180;
-        on-timeout = "hyprlock";
-      }
-      # on ac power
-      {
-        timeout = 300;
-        on-timeout = "systemd-ac-power && brightnessctl -s set 10";
-        on-resume = "brightnessctl -r";
-      }
-      # on battery
-      {
-        timeout = 120;
-        on-timeout = "systemd-ac-power || brightnessctl -s set 10";
-        on-resume = "brightnessctl -r";
-      }
-      {
-        timeout = 240;
-        on-timeout = "systemd-ac-power || hyprctl dispatch dpms off";
-        on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
-      }
-      {
-        timeout = 1800;
-        on-timeout = "systemd-ac-power || systemctl suspend";
-      }
-    ];
   };
 }

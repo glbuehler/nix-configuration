@@ -164,6 +164,18 @@
         "type": "github"
       }
     },
+    "local-config": {
+      "locked": {
+        "lastModified": 1769971173,
+        "narHash": "sha256-PDaQ4mx0F1XFCANCJQygfLgxS8a2352yNHy3Q+g6FIg=",
+        "path": "/home/gideon/system/local-config",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/gideon/system/local-config",
+        "type": "path"
+      }
+    },
     "luvit-meta": {
       "flake": false,
       "locked": {
@@ -244,6 +256,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "kickstart-nix": "kickstart-nix",
+        "local-config": "local-config",
         "nixpkgs": "nixpkgs_2"
       }
     },
