@@ -1,6 +1,8 @@
 { pkgs, ... }:
 let
   terminal = "${pkgs.ghostty}/bin/ghostty";
+  wpctl = "${pkgs.wireplumber}/bin/wpctl";
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
 in
 {
 
@@ -75,10 +77,14 @@ in
         ", XF86MonBrightnessUp, exec, brightnessctl -e4 -n1 set +8%"
         ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n1 set 8%-"
 
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioPlay, exec, ${playerctl} play-pause"
+        ", XF86AudioStop, exec, ${playerctl} stop"
+        ", XF86AudioPrev, exec, ${playerctl} previous"
+        ", XF86AudioNext, exec, ${playerctl} next"
         ", switch:Lid Switch, exec, hyprlock"
 
         "$mod, s, exec, hyprshot -m window -m active --clipboard-only"
@@ -174,7 +180,7 @@ in
           default = [ "" "" ];
         };
         scroll-step = 1;
-        on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
         ignored-sinks = [ "Easy Effects Sink" ];
       };
       "battery" = {
