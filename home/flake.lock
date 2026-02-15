@@ -165,9 +165,12 @@
       }
     },
     "local-config": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
       "locked": {
-        "lastModified": 1769971173,
-        "narHash": "sha256-PDaQ4mx0F1XFCANCJQygfLgxS8a2352yNHy3Q+g6FIg=",
+        "lastModified": 1771163166,
+        "narHash": "sha256-Iyn8Rw+3BEvb/QiU592o7LJ90Y63idldqmrr0wmbIFA=",
         "path": "/home/gideon/system/local-config",
         "type": "path"
       },
@@ -240,6 +243,22 @@
       "locked": {
         "lastModified": 1767313136,
         "narHash": "sha256-16KkgfdYqjaeRGBaYsNrhPRRENs0qzkQVUooNHtoy2w=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ac62194c3917d5f474c1a844b6fd6da2db95077d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1767313136,
+        "narHash": "sha256-16KkgfdYqjaeRGBaYsNrhPRRENs0qzkQVUooNHtoy2w=",
         "owner": "NixOs",
         "repo": "nixpkgs",
         "rev": "ac62194c3917d5f474c1a844b6fd6da2db95077d",
@@ -257,7 +276,7 @@
         "home-manager": "home-manager",
         "kickstart-nix": "kickstart-nix",
         "local-config": "local-config",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       }
     },
     "systems": {
