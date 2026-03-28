@@ -11,7 +11,9 @@
     ./hyprland.nix
   ];
 
-  home.packages = with pkgs; [ ];
+  home.packages = with pkgs; [
+    prismlauncher
+  ];
   home.file = { };
 
   programs.ghostty.settings.font-size = 16;
