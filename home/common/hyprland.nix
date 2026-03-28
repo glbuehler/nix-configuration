@@ -129,7 +129,7 @@ in
       decoration = {
         blur.enabled = false;
         rounding = 6;
-        inactive_opacity = 0.7;
+        # inactive_opacity = 0.7;
       };
     };
   };
