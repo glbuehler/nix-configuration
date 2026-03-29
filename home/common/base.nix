@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 {
-
   news.display = "silent";
 
   dconf = {
@@ -60,9 +59,9 @@
 
   programs.git = {
     enable = true;
-    userName = "Gideon Bühler";
-    userEmail = "gideonbuehler18@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Gideon Bühler";
+      user.email = "gideonbuehler19@gmail.com";
       init.defaultBranch = "main";
       core.editor = "${pkgs.nvim-pkg}/bin/nvim";
     };
@@ -84,7 +83,7 @@
       background = "#1a1b26";
       window-decoration = "none";
       app-notifications = "no-clipboard-copy";
-      theme = "tokyonight";
+      theme = "TokyoNight";
       keybind = [
         "clear"
         "ctrl+shift+c=copy_to_clipboard"
