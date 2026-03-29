@@ -22,20 +22,24 @@
       config.allowUnfree = true;
       overlays = [ kickstart-nix.overlays.default ];
     };
-
-    variants = {
-      laptop = [ ./laptop/home.nix ];
-      desktop = [ ./desktop/home.nix ];
-    };
   in {
-    homeConfigurations."gideon" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."gideon@nixos-desktop" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       extraSpecialArgs = {
         inherit inputs;
       };
 
-      modules = variants.${local-config.variant};
+      modules = [ ./desktop/home.nix ];
+    };
+    homeConfigurations."gideon@nixos-laptop" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+
+      extraSpecialArgs = {
+        inherit inputs;
+      };
+
+      modules = [ ./laptop/home.nix ];
     };
   };
 }

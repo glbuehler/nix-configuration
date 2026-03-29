@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
     ./greet.nix
   ];
 
@@ -10,12 +9,9 @@
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = [];
 
-  programs.fish.enable = true;
-
   boot.kernelParams = [
     "amdgpu.noretry=0"
     "amdgpu.gpu_recovery=1"
-    "pcie_aspm=off"
   ];
 
   # Bootloader
@@ -29,7 +25,6 @@
   };
 
   # Networking
-  networking.hostName = "nixos-pc";
   networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;
@@ -37,13 +32,8 @@
     allowedUDPPorts = [ ];
   };
 
-  # Filesystems
-  fileSystems."/tmp" = {
-    fsType = "tmpfs";
-    options = [ "mode=1777" "size=8G" ];
-  };
-
-  # Time
+  # Time/Locale
+  console.keyMap = "de";
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -61,29 +51,13 @@
   services.seatd.enable = true;
   services.blueman.enable = true;
   security.pam.services.hyprlock = {};
-  services.keyd = {
-    enable = true;
 
-    keyboards.default = {
-      ids = [ "*" ];
-
-      settings = {
-        main = {
-          left = "rightcontrol";
-        };
-      };
-    };
-  }; 
-
-
+  hardware.bluetooth.enable = true;
   hardware.graphics = {
     enable = true;
-    enable32Bit = true;
   };
-  hardware.bluetooth.enable = true;
 
-  console.keyMap = "de";
-
+  programs.fish.enable = true;
   users.users.gideon = {
     isNormalUser = true;
     description = "gideon";
@@ -91,27 +65,16 @@
     extraGroups = [ "wheel" "networkmanager" "power" ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
     home-manager
     gcc
   ];
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
-
-  programs.steam.enable = true;
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-unwrapped"
-    "steam-run"
-  ];
-
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   system.stateVersion = "24.11";
 }

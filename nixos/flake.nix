@@ -9,10 +9,18 @@
   let 
     system = "x86_64-linux";
   in {
-    nixosConfigurations."nixos-pc" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."nixos-desktop" = nixpkgs.lib.nixosSystem {
       inherit system;
+
       modules = [ 
-        ./configuration.nix
+        ./desktop/configuration.nix
+      ];
+    };
+    nixosConfigurations."nixos-laptop" = nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      modules = [ 
+        ./laptop/configuration.nix
       ];
     };
   };

@@ -5,6 +5,8 @@
 
   home.stateVersion = "24.05";
 
+  news.display = "silent";
+
   imports = [ 
     ../common/base.nix
     ../common/hyprland.nix
@@ -14,10 +16,11 @@
   home.packages = with pkgs; [
     prismlauncher
   ];
-  home.file = { };
 
   programs.ghostty.settings.font-size = 16;
 
-  # Let Home Manager install and manage itself.
+  home.file = { };
+  home.sessionVariables = { };
+
   programs.home-manager.enable = true;
 }
