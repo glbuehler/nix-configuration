@@ -20,7 +20,7 @@
         cursor_theme_name = "Adwaita";
       };
       background = {
-        path = "/usr/share/backgrounds/regreet-bg.jpeg";
+        path = "/usr/share/backgrounds/regreet-bg";
         fit = "Cover";
       };
       appearance.greeting_msg = "NixOs, btw";

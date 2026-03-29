@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -29,7 +29,7 @@
   };
 
   # Networking
-  networking.hostName = "nixos";
+  networking.hostName = "nixos-pc";
   networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;
@@ -60,10 +60,26 @@
 
   services.seatd.enable = true;
   services.blueman.enable = true;
-  services.tlp.enable = true;
   security.pam.services.hyprlock = {};
+  services.keyd = {
+    enable = true;
 
-  hardware.graphics.enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+
+      settings = {
+        main = {
+          left = "rightcontrol";
+        };
+      };
+    };
+  }; 
+
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
   hardware.bluetooth.enable = true;
 
   console.keyMap = "de";
@@ -86,6 +102,14 @@
     enable = true;
     xwayland.enable = true;
   };
+
+  programs.steam.enable = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-unwrapped"
+    "steam-run"
+  ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
