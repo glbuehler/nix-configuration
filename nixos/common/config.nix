@@ -51,6 +51,7 @@
   services.seatd.enable = true;
   services.blueman.enable = true;
   security.pam.services.hyprlock = {};
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   hardware.bluetooth.enable = true;
   hardware.graphics = {
