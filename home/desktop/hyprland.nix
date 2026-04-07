@@ -7,6 +7,12 @@
     exec-once = [
       "[workspace 10 silent] ${pkgs.discord}/bin/discord"
     ];
+    windowrulev2 = [
+        "workspacesilent 10, class:^(discord)$"
+        "float, class:^(cod.exe)$"
+        "center, class:^(cod.exe)$"
+        "focusonactivate, class:^(cod.exe)$"
+    ];
 
     input = {
       accel_profile = "flat";

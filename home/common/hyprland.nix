@@ -14,7 +14,6 @@ in
     enable = true;
     package = null;
     portalPackage = null;
-
     settings = {
       "$mod" = "SUPER";
       exec-once = [
@@ -133,6 +132,7 @@ in
         rounding = 6;
         # inactive_opacity = 0.7;
       };
+      ecosystem.no_update_news = true;
     };
   };
 
