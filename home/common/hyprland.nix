@@ -90,8 +90,6 @@ in
         "SHIFT $mod, s, exec, hyprshot -m window -m active --output-folder ~/Pictures"
         "CTRL $mod, s, exec, hyprshot -m region --clipboard-only"
         "CTRL SHIFT $mod, s, exec, hyprshot -m region --output-folder ~/Pictures"
-
-        "$mod, l, exec, hyprlock"
       ];
       bindm = [
         "$mod, mouse:272, resizewindow"
