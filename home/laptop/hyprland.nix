@@ -6,9 +6,14 @@
   ];
   
   wayland.windowManager.hyprland.settings = {
+    exec-once = [
+      "${config.programs.caelestia.package}/bin/caelestia-shell"
+    ];
     monitor = [
       "eDP-1,1920x1080@60,0x0,1"
     ];
+
+    general.gaps_out = lib.mkForce 8;
 
     input = {
       accel_profile = "flat";
@@ -56,5 +61,31 @@
       on-timeout = "systemd-ac-power || systemctl suspend";
     }
   ];
+
+  programs.caelestia = {
+    enable = true;
+    systemd = {
+      enable = false; # if you prefer starting from your compositor
+      target = "graphical-session.target";
+      environment = [];
+    };
+    settings = {
+      bar.status = {
+        showBattery = true;
+      };
+      launcher = {
+        vimKeybinds = true;
+        enableDangerousActions = true;
+      };
+      paths.wallpaperDir = "~/Pictures";
+      general.idle.timeouts = [ ];
+    };
+    cli = {
+      enable = true; # Also add caelestia-cli to path
+      settings = {
+        theme.enableGtk = false;
+      };
+    };
+  };
   
 }

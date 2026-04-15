@@ -11,6 +11,10 @@
       url = "github:glbuehler/kickstart-nix.nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell-config = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, kickstart-nix, ... }@inputs:
@@ -38,7 +42,10 @@
         inherit inputs;
       };
 
-      modules = [ ./laptop/home.nix ];
+      modules = [
+        ./laptop/home.nix
+        inputs.quickshell-config.homeManagerModules.default
+      ];
     };
   };
 }

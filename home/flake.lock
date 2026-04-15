@@ -1,5 +1,29 @@
 {
   "nodes": {
+    "caelestia-cli": {
+      "inputs": {
+        "caelestia-shell": [
+          "quickshell-config"
+        ],
+        "nixpkgs": [
+          "quickshell-config",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772764582,
+        "narHash": "sha256-hSwjmpXHFqzSXrndVekA0IheKrbC7wi0IbfZTYwlmXw=",
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "rev": "4bcd42f482d038b98145b0b03388244b68b7d35d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -240,11 +264,55 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "quickshell-config",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772925576,
+        "narHash": "sha256-mMoiXABDtkSJxCYDrkhJ/TrrJf5M46oUfIlJvv2gkZ0=",
+        "ref": "refs/heads/master",
+        "rev": "15a84097653593dd15fad59a56befc2b7bdc270d",
+        "revCount": 750,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
+    "quickshell-config": {
+      "inputs": {
+        "caelestia-cli": "caelestia-cli",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1775660122,
+        "narHash": "sha256-qMKB06TE0MY1anDQKBrzZEpktNPyvMxQQzTEEwWAA6I=",
+        "owner": "caelestia-dots",
+        "repo": "shell",
+        "rev": "aa2b08dd45963dc9558de94dbff5e1615e347d02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caelestia-dots",
+        "repo": "shell",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "kickstart-nix": "kickstart-nix",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "quickshell-config": "quickshell-config"
       }
     },
     "systems": {

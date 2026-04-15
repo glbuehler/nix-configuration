@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
-  terminal = "${pkgs.ghostty}/bin/ghostty";
+  terminal = lib.getExe pkgs.ghostty;
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  playerctl = lib.getExe pkgs.playerctl;
 in
 {
 
@@ -17,9 +17,8 @@ in
     settings = {
       "$mod" = "SUPER";
       exec-once = [
-        "${pkgs.waybar}/bin/waybar"
         "[workspace 1 silent] ${terminal}"
-        "[workspace 2 silent] ${pkgs.firefox}/bin/firefox"
+        "[workspace 2 silent] ${lib.getExe pkgs.firefox}"
       ];
       animations = {
         enabled = true;

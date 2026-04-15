@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   home.username = "gideon";
   home.homeDirectory = "/home/gideon";
@@ -12,7 +12,15 @@
     ./hyprland.nix
   ];
 
-  home.packages = with pkgs; [ ];
+  home.packages = with pkgs; [
+    pamixer
+    quickshell
+  ];
+
+  # xdg.configFile."quickshell" = {
+  #   source = inputs.quickshell-config;
+  #   recursive = true;
+  # };
 
   programs.ghostty.settings.font-size = 18;
 

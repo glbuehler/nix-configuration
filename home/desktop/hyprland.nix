@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [
       "eDP-1,1680x1050@60,0x0,1"
     ];
     exec-once = [
+      lib.getExe pkgs.waybar
       "[workspace 10 silent] ${pkgs.discord}/bin/discord"
     ];
     windowrulev2 = [
