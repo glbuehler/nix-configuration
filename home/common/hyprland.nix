@@ -83,7 +83,7 @@ in
         ", XF86AudioStop, exec, ${playerctl} stop"
         ", XF86AudioPrev, exec, ${playerctl} previous"
         ", XF86AudioNext, exec, ${playerctl} next"
-        ", switch:Lid Switch, exec, hyprlock"
+        # ", switch:Lid Switch, exec, hyprlock"
 
         "$mod, s, exec, hyprshot -m window -m active --clipboard-only"
         "SHIFT $mod, s, exec, hyprshot -m window -m active --output-folder ~/Pictures"
@@ -265,11 +265,11 @@ in
     wallpaper = [ ", ~/Pictures/wallpaper" ];
   };
 
-  services.hypridle.enable = true;
-  services.hypridle.settings = {
-    general = {
-      lock_cmd = "pidof hyprlock || hyprlock";
-      before_sleep_cmd = "pidof hyprlock || hyprlock";
-    };
-  };
+  # services.hypridle.enable = true;
+  # services.hypridle.settings = {
+  #   general = {
+  #     lock_cmd = "pidof hyprlock || hyprlock";
+  #     before_sleep_cmd = "pidof hyprlock || hyprlock";
+  #   };
+  # };
 }

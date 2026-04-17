@@ -10,6 +10,7 @@
 
   # Power management daemon
   services.tlp.enable = true;
+  services.upower.enable = true;
 
   # Filesystems
   fileSystems."/tmp" = {
