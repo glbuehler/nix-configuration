@@ -12,6 +12,10 @@
 
   # Networking
   networking.hostName = "nixos-desktop";
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
 
   # Filesystems
   fileSystems."/tmp" = {
