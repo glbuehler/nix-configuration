@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   home.username = "gideon";
   home.homeDirectory = "/home/gideon";
@@ -7,9 +12,10 @@
 
   news.display = "silent";
 
-  imports = [ 
+  imports = [
     ../common/base.nix
     ./hyprland.nix
+    ./dms.nix
   ];
 
   home.packages = with pkgs; [ ];

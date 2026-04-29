@@ -17,7 +17,7 @@ in
     settings = {
       "$mod" = "SUPER";
       exec-once = [
-        "${pkgs.waybar}/bin/waybar"
+        # "${pkgs.waybar}/bin/waybar"
         "[workspace 1 silent] ${terminal}"
         "[workspace 2 silent] ${pkgs.firefox}/bin/firefox"
       ];
@@ -37,7 +37,7 @@ in
       bind = [
         "$mod, return, exec, ${terminal}"
         "$mod, q, killactive"
-        "$mod, d, exec, wofi --show drun"
+        # "$mod, d, exec, wofi --show drun"
 
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
@@ -84,7 +84,7 @@ in
         ", XF86AudioStop, exec, ${playerctl} stop"
         ", XF86AudioPrev, exec, ${playerctl} previous"
         ", XF86AudioNext, exec, ${playerctl} next"
-        ", switch:Lid Switch, exec, hyprlock"
+        ", switch:Lid Switch, exec, dms ipc lock lock"
 
         "$mod, s, exec, hyprshot -m window -m active --clipboard-only"
         "SHIFT $mod, s, exec, hyprshot -m window -m active --output-folder ~/Pictures"
