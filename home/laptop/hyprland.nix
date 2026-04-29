@@ -6,10 +6,6 @@
 }:
 {
 
-  imports = [
-    ../common/hyprland.nix
-  ];
-
   wayland.windowManager.hyprland.settings = {
     monitor = [
       "eDP-1,1920x1080@60,0x0,1"
@@ -24,23 +20,6 @@
       };
     };
   };
-
-  programs.waybar.enable = lib.mkForce false;
-
-  # programs.waybar.settings.mainBar = {
-  #   layer = "top";
-  #   reload_style_on_change = true;
-  #   position = "top";
-  #   modules-left = [ "hyprland/workspaces" ];
-  #   modules-center = [ "clock" ];
-  #   modules-right = [
-  #     "custom/mic"
-  #     "pulseaudio"
-  #     "battery"
-  #     "bluetooth"
-  #     "network"
-  #   ];
-  # };
 
   services.hypridle.settings.listener =
     let

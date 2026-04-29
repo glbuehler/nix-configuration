@@ -14,8 +14,9 @@
 
   imports = [
     ../common/base.nix
+    ../common/hyprland.nix
+    ../common/dms.nix
     ./hyprland.nix
-    ./dms.nix
   ];
 
   home.packages = with pkgs; [ ];

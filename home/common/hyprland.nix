@@ -17,7 +17,6 @@ in
     settings = {
       "$mod" = "SUPER";
       exec-once = [
-        # "${pkgs.waybar}/bin/waybar"
         "[workspace 1 silent] ${terminal}"
         "[workspace 2 silent] ${pkgs.firefox}/bin/firefox"
       ];
@@ -37,7 +36,7 @@ in
       bind = [
         "$mod, return, exec, ${terminal}"
         "$mod, q, killactive"
-        # "$mod, d, exec, wofi --show drun"
+        # "$mod, d, exec, dms"
 
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
@@ -134,143 +133,11 @@ in
     };
   };
 
-  programs.waybar.enable = true;
-  programs.waybar.style = builtins.readFile ./waybar-style.css;
-  programs.waybar.settings = {
-    mainBar = {
-      "hyprland/workspaces" = {
-        format = "{name}";
-      };
-      "clock" = {
-        interval = 60;
-        format = "{:%d.%m - %H:%M}";
-        tooltip-format = "<tt><small>{calendar}</small></tt>";
-        calendar = {
-          mode = "year";
-          mode-mon-col = 3;
-          weeks-pos = "right";
-          format = {
-            months = "<span color='#ffead3'><b>{}</b></span>";
-            days = "<span color='#ecc6d9'><b>{}</b></span>";
-            weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-            weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-            today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-          };
-        };
-      };
-      "custom/mic" = {
-        format = "{}";
-        exec = ./mic_watcher.sh;
-        return-type = "json";
-      };
-      "pulseaudio" = {
-        format = "{volume}% {icon}";
-        format-bluetooth = "{volume}% {icon}";
-        format-muted = "";
-        format-icons = {
-          "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
-          "alsa_output.pci-0000_00_1f.3.analog-stereo-muted" = "";
-          headphone = "";
-          hands-free = "";
-          headset = "";
-          phone = "";
-          phone-muted = "";
-          portable = "";
-          car = "";
-          default = [ "" "" ];
-        };
-        scroll-step = 1;
-        on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        ignored-sinks = [ "Easy Effects Sink" ];
-      };
-      "battery" = {
-        interval = 30;
-        states = {
-          good = 95;
-          warning = 30;
-          critical = 20;
-        };
-        format = "{capacity}% {icon}";
-        format-charging = "{capacity}% 󰂄";
-        format-plugged = "{capacity}% 󰂄";
-        format-alt = "{time} {icon}";
-        format-icons = [ "󰁻" "󰁼" "󰁾" "󰂀" "󰂂" "󰁹" ];
-      };
-      "bluetooth" = {
-        format = "";
-        format-disabled = "";
-        format-connected = "{num_connections} ";
-        tooltip-format = "{controller_alias}\t{controller_address}";
-        tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
-        tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-      };
-      "network" = {
-        interval = 30;
-        format-wifi = "{icon}";
-        format-icons = [ "󰤟" "󰤢" "󰤨" ];
-        format-ethernet ="";
-        format-disconnected = "";
-        tooltip-format-disconnected = "no connection";
-        tooltip-format-wifi = "{essid} ({signalStrength}%)";
-        tooltip-format-ethernet = "{ifname} 🖧 ";
-        on-click = "${terminal} --command=nmtui";
-      };
-    };
-  };
-
-  programs.hyprlock.enable = true;
-  programs.hyprlock.settings = {
-    general.hide_cursor = true;
-    input-field = {
-      size = "250, 60";
-      fade_on_empty = false;
-      outline_thickness = 0;
-    };
-    background = {
-      path = "~/Pictures/hyprlock-bg";
-    };
-    label = [ 
-      {
-        text = "<b>$TIME</b>";
-        font_size = 80;
-        position = "0, 180";
-      }
-      {
-        text = "<span color='##32a877'>NixOS</span>, btw";
-        font_size = 20;
-        position = "0, 80";
-      }
-    ];
-  };
-
-  programs.wofi.enable = true;
-  programs.wofi.settings = {
-    allow_images = true;
-    key_exit = "Ctrl-c";
-    key_up = "Ctrl-p";
-    key_down = "Ctrl-n";
-  };
-  programs.wofi.style = ''
-    #window {
-      border-radius: 6px;
-    }
-    #window, #input {
-      background-color: #222222;
-      color: white;
-    }
-  '';
-
-  services.hyprpaper.enable = true;
-  services.hyprpaper.settings = {
-    preload = [ "~/Pictures/wallpaper" ];
-    wallpaper = [ ", ~/Pictures/wallpaper" ];
-  };
-
   services.hypridle.enable = true;
   services.hypridle.settings = {
     general = {
-      lock_cmd = "pidof hyprlock || hyprlock";
-      before_sleep_cmd = "pidof hyprlock || hyprlock";
+      lock_cmd = "dms lock lock";
+      before_sleep_cmd = "dms lock lock";
     };
   };
 }
