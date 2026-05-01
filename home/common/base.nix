@@ -89,7 +89,7 @@
         "ctrl+shift+c=copy_to_clipboard"
         "ctrl+shift+v=paste_from_clipboard"
         "ctrl+plus=increase_font_size:2"
-        "ctrl+minus=decrease_font_size:2"
+        "ctrl+slash=decrease_font_size:2" # is slash on US layout, works for minus on DE
       ];
       confirm-close-surface = false;
     };

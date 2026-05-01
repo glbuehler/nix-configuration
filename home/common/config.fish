@@ -85,6 +85,7 @@ end
 # Keybinds
 
 bind \cy accept-autosuggestion
+bind --erase --preset \cminus
 
 
 # Aliases
