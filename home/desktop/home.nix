@@ -10,6 +10,7 @@
   imports = [ 
     ../common/base.nix
     ../common/hyprland.nix
+    ../common/dms.nix
     ./hyprland.nix
   ];
 
