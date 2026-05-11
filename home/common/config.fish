@@ -55,10 +55,10 @@ function fish_greeting
 end
 
 function git_prompt
-    if test (fish_git_prompt)
-        set --local git_branch \
-            (string replace --regex --all '\(|\)' '' (fish_git_prompt))
-        echo "$git_branch "
+    # use git branch instead of fish_git_prompt from ~10ms to ~3ms
+    set --local branch (git branch --show-current 2> /dev/null)
+    if test $status -eq "0"
+        echo " $branch "
     end
 end
 
