@@ -31,6 +31,9 @@
         main = {
           left = "rightcontrol";
         };
+        "control:left" = {
+          left = "left";
+        };
       };
     };
   }; 
