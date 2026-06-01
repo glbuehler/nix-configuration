@@ -34,12 +34,13 @@
     discord
     firefox
     gimp
-    kdePackages.dolphin
+    # kdePackages.dolphin
+    yazi
+    yaziPlugins.drag
     libnotify
     pulseaudio
     pulsemixer
     nvim-pkg
-    rustup
     zip
     unzip
     gnutar

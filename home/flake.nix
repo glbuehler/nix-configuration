@@ -2,14 +2,14 @@
   description = "Home Manager configuration of gideon";
 
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-26.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kickstart-nix = {
       url = "github:glbuehler/kickstart-nix.nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     dank-material-shell = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
