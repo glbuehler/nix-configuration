@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of gideon";
+  description = "System configuration of gideon";
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-26.05";
@@ -33,8 +33,9 @@
         inherit inputs;
       };
 
-      modules = [ ./desktop/home.nix ];
+      modules = [ ./home/desktop/home.nix ];
     };
+
     homeConfigurations."gideon@nixos-laptop" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
@@ -42,7 +43,23 @@
         inherit inputs;
       };
 
-      modules = [ ./laptop/home.nix ];
+      modules = [ ./home/laptop/home.nix ];
+    };
+
+    nixosConfigurations."nixos-desktop" = nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      modules = [
+        ./nixos/desktop/configuration.nix
+      ];
+    };
+
+    nixosConfigurations."nixos-laptop" = nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      modules = [
+        ./nixos/laptop/configuration.nix
+      ];
     };
   };
 }
