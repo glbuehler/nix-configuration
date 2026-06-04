@@ -16,6 +16,7 @@
 
   # Bootloader
   boot.loader.systemd-boot.enable = false;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
     enable = true;
