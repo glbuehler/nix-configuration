@@ -171,11 +171,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1780435793,
-        "narHash": "sha256-8pNuAvKnv0SNG2fJQnd4/yC7FKUBvtFs8hPF4x0s7/4=",
+        "lastModified": 1780564022,
+        "narHash": "sha256-/4sf/rfksj5NAxgG2UI6O3n8jj5GnQ6qf95khpR3fVw=",
         "owner": "glbuehler",
         "repo": "kickstart-nix.nvim",
-        "rev": "8e2cf042fcc65ea14c9cfce077b9f83f03398dc8",
+        "rev": "e5689dacfe7deea85bcbb52db26f716186a0440c",
         "type": "github"
       },
       "original": {
