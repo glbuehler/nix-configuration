@@ -17,6 +17,7 @@
     iconTheme.name = "Yaru";
     cursorTheme.name = "Adwaita";
   };
+  gtk.gtk4.theme = config.gtk.theme;
 
   home.pointerCursor = {
     enable = true;

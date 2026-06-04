@@ -17,49 +17,45 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, kickstart-nix, ... }@inputs:
-  let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      localSystem = { inherit system; };
-      config.allowUnfree = true;
-      overlays = [ kickstart-nix.overlays.default ];
-    };
-  in {
-    homeConfigurations."gideon@nixos-desktop" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-
-      extraSpecialArgs = {
-        inherit inputs;
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      kickstart-nix,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        localSystem = { inherit system; };
+        config.allowUnfree = true;
+        overlays = [ kickstart-nix.overlays.default ];
       };
+      nixosConfig = host: {
+        inherit system;
 
-      modules = [ ./home/desktop/home.nix ];
-    };
-
-    homeConfigurations."gideon@nixos-laptop" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-
-      extraSpecialArgs = {
-        inherit inputs;
+        modules = [
+          ./nixos/${host}/configuration.nix
+        ];
       };
+      homeConfig = host: {
+        inherit pkgs;
 
-      modules = [ ./home/laptop/home.nix ];
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+
+        modules = [ ./home/${host}/home.nix ];
+      };
+    in
+    {
+      homeConfigurations."gideon@nixos-desktop" = home-manager.lib.homeManagerConfiguration (
+        homeConfig "desktop"
+      );
+      homeConfigurations."gideon@nixos-laptop" = home-manager.lib.homeManagerConfiguration (
+        homeConfig "laptop"
+      );
+      nixosConfigurations."nixos-desktop" = nixpkgs.lib.nixosSystem (nixosConfig "desktop");
+      nixosConfigurations."nixos-laptop" = nixpkgs.lib.nixosSystem (nixosConfig "laptop");
     };
-
-    nixosConfigurations."nixos-desktop" = nixpkgs.lib.nixosSystem {
-      inherit system;
-
-      modules = [
-        ./nixos/desktop/configuration.nix
-      ];
-    };
-
-    nixosConfigurations."nixos-laptop" = nixpkgs.lib.nixosSystem {
-      inherit system;
-
-      modules = [
-        ./nixos/laptop/configuration.nix
-      ];
-    };
-  };
 }

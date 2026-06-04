@@ -14,10 +14,10 @@
 
   imports = [
     ../common/base.nix
-    ../common/hyprland.nix
     ../common/dms.nix
-    ./hyprland.nix
+    ../hyprland/hyprland.nix
   ];
+  hyprland.host = "laptop";
 
   home.packages = with pkgs; [ ];
 

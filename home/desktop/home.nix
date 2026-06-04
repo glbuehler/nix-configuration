@@ -9,10 +9,11 @@
 
   imports = [ 
     ../common/base.nix
-    ../common/hyprland.nix
     ../common/dms.nix
-    ./hyprland.nix
+    ../hyprland/hyprland.nix
   ];
+  hyprland.host = "desktop";
+
 
   home.packages = with pkgs; [
     prismlauncher
