@@ -1,13 +1,22 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 {
   imports = [
-    ./greet.nix
+    # ./greet.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = [];
+  programs.nix-ld.libraries = [ ];
 
   boot.kernelParams = [
     "amdgpu.noretry=0"
@@ -51,7 +60,7 @@
 
   services.seatd.enable = true;
   services.blueman.enable = true;
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
   services.upower.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
@@ -65,7 +74,11 @@
     isNormalUser = true;
     description = "gideon";
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "networkmanager" "power" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "power"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -77,6 +90,15 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+  };
+
+  services.displayManager.dms-greeter = {
+    enable = true;
+    package = inputs.dank-material-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    compositor = {
+      name = "hyprland";
+      # customConfig = '''';
+    };
   };
 
   system.stateVersion = "24.11";

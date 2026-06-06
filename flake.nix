@@ -33,6 +33,9 @@
       };
       nixosConfig = host: {
         inherit system;
+        specialArgs = {
+          inherit inputs;
+        };
 
         modules = [
           ./nixos/${host}/configuration.nix
