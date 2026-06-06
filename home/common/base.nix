@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 {
+
+  imports = [
+    ./browser.nix
+  ];
+
   news.display = "silent";
 
   dconf = {
@@ -33,9 +38,9 @@
   home.packages = with pkgs; [ 
     brightnessctl
     discord
-    firefox
+    # firefox
     gimp
-    # kdePackages.dolphin
+    kdePackages.dolphin
     yazi
     yaziPlugins.drag
     libnotify

@@ -16,7 +16,7 @@
         terminal = "${pkgs.ghostty}/bin/ghostty";
         wpctl = "${pkgs.wireplumber}/bin/wpctl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
-        browser = "${pkgs.firefox}/bin/firefox";
+        browser = "${pkgs.brave}/bin/brave";
         hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
         host_config_path = host;
       }

@@ -53,8 +53,8 @@ end
 
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd(browser, { workspace = "2 silent" })
     hl.exec_cmd(terminal, { workspace = "1" })
+    hl.exec_cmd(browser, { workspace = "2 silent" })
     hl.exec_cmd(dms .. " run")
 
     -- only execute if passed to variables
@@ -63,10 +63,23 @@ hl.on("hyprland.start", function()
     end
 end)
 
+
+hl.on("hyprland.shutdown", function()
+    hl.dsp.window.close("class:brave-browser")
+end)
+
 hl.window_rule({
-    match = { class = "^(discord)$" },
-    workspace = "10",
-    no_focus = true,
+    match = {
+        class = "brave-browser",
+    },
+    workspace = "2 silent",
+})
+
+hl.window_rule({
+    match = {
+        class = "discord",
+    },
+    workspace = "10 silent",
 })
 
 hl.bind(mod .. " + 1", hl.dsp.focus({ workspace = 1 }))
