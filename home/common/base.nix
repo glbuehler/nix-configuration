@@ -38,7 +38,6 @@
   home.packages = with pkgs; [ 
     brightnessctl
     discord
-    # firefox
     gimp
     kdePackages.dolphin
     yazi

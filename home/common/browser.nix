@@ -1,17 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
 
-  programs.chromium = {
+  programs.firefox = {
     enable = true;
-    package = pkgs.brave;
-    extensions = [
-      { # markdown viewer
-        id = "ckkdlimhmcjmikdlpkmbgfkaikojcbjk";
-      }
-      { # dark reader
-        id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
-      }
-    ];
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
   };
 
 }

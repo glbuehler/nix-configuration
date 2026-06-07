@@ -64,13 +64,9 @@ hl.on("hyprland.start", function()
 end)
 
 
-hl.on("hyprland.shutdown", function()
-    hl.dsp.window.close("class:brave-browser")
-end)
-
 hl.window_rule({
     match = {
-        class = "brave-browser",
+        class = "firefox",
     },
     workspace = "2 silent",
 })
