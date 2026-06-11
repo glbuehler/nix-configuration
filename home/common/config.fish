@@ -55,10 +55,15 @@ function fish_greeting
 end
 
 function git_prompt
+    set --local git_status ""
+    set --local git_status_result (git status --short 2> /dev/null)
+    if test -n "$git_status_result"
+        set git_status " *"
+    end
     # use git branch instead of fish_git_prompt from ~10ms to ~3ms
-    set --local branch (git branch --show-current 2> /dev/null)
+    set --local git_branch (git branch --show-current 2> /dev/null)
     if test $status -eq "0"
-        echo " $branch "
+        echo "$git_status $git_branch "
     end
 end
 
