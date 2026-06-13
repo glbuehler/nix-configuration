@@ -38,13 +38,6 @@
     };
   }; 
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  services.dbus.enable = true;
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

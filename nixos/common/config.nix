@@ -1,13 +1,14 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   inputs,
   lib,
   ...
 }:
 {
   imports = [
-    # ./greet.nix
+    ./greet.nix
   ];
 
   nix.settings.experimental-features = [
@@ -63,6 +64,13 @@
   security.pam.services.hyprlock = { };
   services.upower.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+  };
+  services.dbus.enable = true;
 
   hardware.bluetooth.enable = true;
   hardware.graphics = {
@@ -84,21 +92,14 @@
   environment.systemPackages = with pkgs; [
     home-manager
     gcc
+    vim
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-  };
-
-  services.displayManager.dms-greeter = {
-    enable = true;
-    package = inputs.dank-material-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    compositor = {
-      name = "hyprland";
-      # customConfig = '''';
-    };
+    package = inputs.pkgs-unstable.hyprland;
   };
 
   system.stateVersion = "24.11";

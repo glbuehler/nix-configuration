@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,6 +21,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       kickstart-nix,
       ...
@@ -31,10 +33,15 @@
         config.allowUnfree = true;
         overlays = [ kickstart-nix.overlays.default ];
       };
+      pkgs-unstable = import nixpkgs-unstable {
+        localSystem = { inherit system; };
+      };
       nixosConfig = host: {
         inherit system;
         specialArgs = {
-          inherit inputs;
+          inputs = inputs // {
+            inherit pkgs-unstable;
+          };
         };
 
         modules = [
