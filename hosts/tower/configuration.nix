@@ -1,26 +1,39 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
-    ../common/config.nix
     ./hardware-configuration.nix
+    ../../modules/all.nix
   ];
 
-  # Disable pcie power saving
-  boot.kernelParams = [
-    "pcie_aspm=off"
-  ];
+  modules = {
+    boot.enable = true;
+    tmpfs.enable = true;
+    network.enable = true;
+    locale.enable = true;
+    gaming.enable = true;
+    bluetooth.enable = true;
+    users.gideon.enable = true;
+    hyprland.system.enable = true;
+    amdgpu = {
+      enable = true;
+      amd_kernelparams = true;
+    };
+    power = {
+      enable = true;
+      aspm = false;
+    };
+  };
 
   # Networking
   networking.hostName = "nixos-desktop";
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
-  };
-
-  # Filesystems
-  fileSystems."/tmp" = {
-    fsType = "tmpfs";
-    options = [ "mode=1777" "size=8G" ];
   };
 
   services.keyd = {
@@ -36,7 +49,7 @@
         };
       };
     };
-  }; 
+  };
 
   services.hardware.openrgb = {
     enable = true;
@@ -44,20 +57,7 @@
     package = pkgs.openrgb-with-all-plugins;
   };
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
   nixpkgs.config.allowUnfree = true;
-
-  programs.steam.enable = true;
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-unwrapped"
-    "steam-run"
-  ];
 
   system.stateVersion = "24.11";
 }

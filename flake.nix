@@ -67,5 +67,19 @@
       );
       nixosConfigurations."nixos-desktop" = nixpkgs.lib.nixosSystem (nixosConfig "desktop");
       nixosConfigurations."nixos-laptop" = nixpkgs.lib.nixosSystem (nixosConfig "laptop");
+
+      nixosConfigurations."test" = nixpkgs.lib.nixosSystem {
+
+        inherit system;
+        specialArgs = {
+          inputs = inputs // {
+            inherit pkgs-unstable;
+          };
+        };
+
+        modules = [
+          ./hosts/tower/configuration.nix
+        ];
+      };
     };
 }
