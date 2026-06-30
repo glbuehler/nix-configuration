@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
-  cfg = config.modules.network;
+  cfg = config.modules.networking;
 in
 {
 
-  options.modules.network = {
+  options.modules.networking = {
     enable = lib.mkEnableOption "enable networking";
     firewall = lib.mkOption {
       type = lib.types.bool;

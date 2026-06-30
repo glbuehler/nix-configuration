@@ -81,5 +81,14 @@
           ./hosts/tower/configuration.nix
         ];
       };
+      homeConfigurations."test@nixos-desktop" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+
+        modules = [ ./hosts/tower/home.nix ];
+      };
     };
 }

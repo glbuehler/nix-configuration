@@ -85,12 +85,15 @@
       };
 
       services.hypridle.settings.listener =
+        let
+          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+        in
         {
           desktop = [
             {
               timeout = 590;
-              on-timeout = "brightnessctl -s set 10";
-              on-resume = "brightnessctl -r";
+              on-timeout = "${brightnessctl} -s set 10";
+              on-resume = "${brightnessctl} -r";
             }
             {
               timeout = 600;
@@ -99,40 +102,36 @@
             {
               timeout = 1800;
               on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
+              on-resume = "hyprctl dispatch dpms on && ${brightnessctl} -r";
             }
           ];
-          laptop =
-            let
-              brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-            in
-            [
-              {
-                timeout = 180;
-                on-timeout = "dms ipc lock lock";
-              }
-              # on ac power
-              {
-                timeout = 300;
-                on-timeout = "systemd-ac-power && ${brightnessctl} -s set 10";
-                on-resume = "${brightnessctl} -r";
-              }
-              # on battery
-              {
-                timeout = 120;
-                on-timeout = "systemd-ac-power || ${brightnessctl} -s set 10";
-                on-resume = "${brightnessctl} -r";
-              }
-              {
-                timeout = 240;
-                on-timeout = "systemd-ac-power || hyprctl dispatch dpms off";
-                on-resume = "hyprctl dispatch dpms on && ${brightnessctl} -r";
-              }
-              {
-                timeout = 1800;
-                on-timeout = "systemd-ac-power || systemctl suspend";
-              }
-            ];
+          laptop = [
+            {
+              timeout = 180;
+              on-timeout = "dms ipc lock lock";
+            }
+            # on ac power
+            {
+              timeout = 300;
+              on-timeout = "systemd-ac-power && ${brightnessctl} -s set 10";
+              on-resume = "${brightnessctl} -r";
+            }
+            # on battery
+            {
+              timeout = 120;
+              on-timeout = "systemd-ac-power || ${brightnessctl} -s set 10";
+              on-resume = "${brightnessctl} -r";
+            }
+            {
+              timeout = 240;
+              on-timeout = "systemd-ac-power || hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on && ${brightnessctl} -r";
+            }
+            {
+              timeout = 1800;
+              on-timeout = "systemd-ac-power || systemctl suspend";
+            }
+          ];
         }
         .${host};
     };

@@ -7,13 +7,14 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/all.nix
+    ../../modules/nixos
+    ../../modules/users/gideon.nix
   ];
 
   modules = {
     boot.enable = true;
     tmpfs.enable = true;
-    network.enable = true;
+    networking.enable = true;
     locale.enable = true;
     gaming.enable = true;
     bluetooth.enable = true;
