@@ -52,7 +52,9 @@
         inherit pkgs;
 
         extraSpecialArgs = {
-          inherit inputs;
+          inputs = inputs // {
+            inherit pkgs-unstable;
+          };
         };
 
         modules = [ ./home/${host}/home.nix ];
