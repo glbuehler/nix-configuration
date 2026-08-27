@@ -12,22 +12,26 @@
   ];
 
   modules = {
-    boot.enable = true;
-    tmpfs.enable = true;
-    networking.enable = true;
-    locale.enable = true;
-    gaming.enable = true;
-    bluetooth.enable = true;
-    users.gideon.enable = true;
-    hyprland.system.enable = true;
     amdgpu = {
       enable = true;
       amd_kernelparams = true;
     };
+    bluetooth.enable = true;
+    boot.enable = true;
+    gaming.enable = true;
+    greeter = {
+      enable = true;
+      background = /home/gideon/Pictures/japan-artistic-1680x1050.jpg;
+    };
+    hyprland.system.enable = true;
+    locale.enable = true;
+    networking.enable = true;
     power = {
       enable = true;
       aspm = false;
     };
+    tmpfs.enable = true;
+    users.gideon.enable = true;
   };
 
   # Networking

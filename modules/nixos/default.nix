@@ -1,21 +1,24 @@
-{ lib, ... }:
-
-let
-  dirs = lib.attrNames (builtins.readDir ./.);
-
-  imports = builtins.concatMap (
-    name:
-    let
-      path = ./. + "/${name}";
-    in
-    if
-      (builtins.readDir ./.)."${name}" == "directory" && builtins.pathExists (path + "/default.nix")
-    then
-      [ path ]
-    else
-      [ ]
-  ) dirs;
-in
+{ pkgs, ... }:
 {
-  inherit imports;
+  imports = [
+    ./amdgpu
+    ./bluetooth
+    ./boot
+    ./desktop
+    ./desktop
+    ./gaming
+    ./greeter
+    ./hyprland
+    ./locale
+    ./networking
+    ./power
+    ./tmpfs
+  ];
+
+  environment.systemPackages = with pkgs; [
+    gcc
+    git
+    home-manager
+    vim
+  ];
 }
