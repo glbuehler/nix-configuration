@@ -69,7 +69,7 @@ in
         hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
 
         autoStart = cfg.autoStart;
-        # host_config_path = host;
+        # host_config_path = "";
       };
     in
     lib.mkIf cfg.enable {

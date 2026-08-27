@@ -1,7 +1,8 @@
 local vars = require("generated.variables")
-
-local _, host_config = pcall(require, vars.host_config_path)
-host_config = host_config or {}
+local host_config = {}
+if vars.host_config_path ~= nil then
+    _, host_config = pcall(require, vars.host_config_path)
+end
 
 local mod = vars.mod or "SUPER"
 
