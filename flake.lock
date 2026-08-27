@@ -10,15 +10,15 @@
       "locked": {
         "lastModified": 1785111455,
         "narHash": "sha256-aTNuC9NDBnYAeEtFsleeUwmGX3AZlKOutbl+LQRPkmQ=",
-        "owner": "AvengeMedia",
-        "repo": "DankMaterialShell",
+        "owner": "avengemedia",
+        "repo": "dankmaterialshell",
         "rev": "069ddab041c738236a8910e4c39b65d9628d3018",
         "type": "github"
       },
       "original": {
-        "owner": "AvengeMedia",
+        "owner": "avengemedia",
         "ref": "stable",
-        "repo": "DankMaterialShell",
+        "repo": "dankmaterialshell",
         "type": "github"
       }
     },
