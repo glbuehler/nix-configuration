@@ -67,7 +67,7 @@
     enable = true;
     settings = {
       user.name = "Gideon Bühler";
-      user.email = "gideonbuehler19@gmail.com";
+      user.email = "gideonbuehler18@gmail.com";
       init.defaultBranch = "main";
       core.editor = "${pkgs.nvim-pkg}/bin/nvim";
     };

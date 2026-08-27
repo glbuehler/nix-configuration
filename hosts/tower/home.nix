@@ -1,7 +1,7 @@
 {
-  config,
+  _config,
   pkgs,
-  lib,
+  _lib,
   ...
 }:
 {
@@ -12,10 +12,17 @@
   home.username = "gideon";
   home.homeDirectory = "/home/gideon";
 
-  news.display = "silent";
   home.stateVersion = "24.05";
 
   modules = {
+    browser.enable = true;
+    fish.enable = true;
+    ghostty.enable = true;
+    git = {
+      enable = true;
+      userName = "Gideon Bühler";
+      userEmail = "gideonbuehler18@gmail.com";
+    };
     hyprland.home = {
       enable = true;
       autoStart = {
@@ -23,5 +30,7 @@
         "ws2" = [ "${pkgs.firefox}/bin/firefox" ];
       };
     };
+    theme.enable = true;
+    tmux.enable = true;
   };
 }

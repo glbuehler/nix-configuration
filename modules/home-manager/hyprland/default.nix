@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
@@ -103,7 +104,7 @@ in
               value = {
                 text = ''
                   return {
-                    ${builtins.trace luaVarsStr luaVarsStr}
+                    ${luaVarsStr}
                   }
                 '';
               };

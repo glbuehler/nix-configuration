@@ -53,14 +53,12 @@ end
 
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd(terminal, { workspace = "1" })
-    hl.exec_cmd(browser, { workspace = "2 silent" })
-    hl.exec_cmd(dms .. " run")
-
-    -- only execute if passed to variables
-    if vars.discord ~= nil then
-        hl.exec_cmd(vars.discord, { workspace = "10 silent" })
+    for key, value in pairs(vars.autoStart) do
+        if key:sub(0, 2) == "ws" then
+            hl.exec_cmd(value, { workspace = key:sub(3) .. " silent" })
+        end
     end
+    hl.exec_cmd(dms .. " run")
 end)
 
 
