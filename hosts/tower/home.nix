@@ -28,6 +28,7 @@
       autoStart = {
         "ws1" = [ "${pkgs.ghostty}/bin/ghostty" ];
         "ws2" = [ "${pkgs.firefox}/bin/firefox" ];
+        "ws10" = [ "${pkgs.discord}/bin/discord" ];
       };
     };
     theme.enable = true;

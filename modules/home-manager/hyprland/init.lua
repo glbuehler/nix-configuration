@@ -54,9 +54,13 @@ end
 
 
 hl.on("hyprland.start", function()
-    for key, value in pairs(vars.autoStart) do
-        if key:sub(0, 2) == "ws" then
-            hl.exec_cmd(value, { workspace = key:sub(3) .. " silent" })
+    if vars.autoStart then
+        for key, value in pairs(vars.autoStart) do
+            if key:sub(0, 2) == "ws" then
+                for _, cmd in ipairs(value) do
+                    hl.exec_cmd(cmd, { workspace = key:sub(3) .. " silent" })
+                end
+            end
         end
     end
     hl.exec_cmd(dms .. " run")

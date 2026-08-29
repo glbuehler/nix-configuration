@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./browser
@@ -8,7 +8,10 @@
     ./hyprland
     ./theme
     ./tmux
+    inputs.dank-material-shell.homeModules.dank-material-shell
   ];
+
+  programs.dank-material-shell.enable = true;
 
   news.display = "silent";
 

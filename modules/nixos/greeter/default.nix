@@ -74,7 +74,7 @@ in
             cursor_theme_name = "Adwaita";
           };
           background = {
-            path = toString cfg.background;
+            path = "${cfg.background}";
             fit = "Cover";
           };
           appearance.greeting_msg = "NixOs, btw";

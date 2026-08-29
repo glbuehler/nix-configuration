@@ -21,7 +21,7 @@
     gaming.enable = true;
     greeter = {
       enable = true;
-      background = /home/gideon/Pictures/japan-artistic-1680x1050.jpg;
+      background = ../../pictures/japan-artistic-1680x1050.jpg;
     };
     hyprland.system.enable = true;
     locale.enable = true;

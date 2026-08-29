@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  system,
   inputs,
   ...
 }:
@@ -67,6 +68,7 @@ in
         wpctl = "${pkgs.wireplumber}/bin/wpctl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
+        dms = "${inputs.dank-material-shell.packages.${system}.default}/bin/dms";
 
         autoStart = cfg.autoStart;
         # host_config_path = "";
@@ -103,9 +105,7 @@ in
               name = "hypr/generated/variables.lua";
               value = {
                 text = ''
-                  return {
-                    ${luaVarsStr}
-                  }
+                  return ${luaVarsStr}
                 '';
               };
             }
