@@ -81,36 +81,24 @@ hl.window_rule({
     workspace = "10 silent",
 })
 
-hl.bind(mod .. " + 1", hl.dsp.focus({ workspace = 1 }))
-hl.bind(mod .. " + 2", hl.dsp.focus({ workspace = 2 }))
-hl.bind(mod .. " + 3", hl.dsp.focus({ workspace = 3 }))
-hl.bind(mod .. " + 4", hl.dsp.focus({ workspace = 4 }))
-hl.bind(mod .. " + 5", hl.dsp.focus({ workspace = 5 }))
-hl.bind(mod .. " + 6", hl.dsp.focus({ workspace = 6 }))
-hl.bind(mod .. " + 7", hl.dsp.focus({ workspace = 7 }))
-hl.bind(mod .. " + 8", hl.dsp.focus({ workspace = 8 }))
-hl.bind(mod .. " + 9", hl.dsp.focus({ workspace = 9 }))
-hl.bind(mod .. " + 0", hl.dsp.focus({ workspace = 10 }))
-hl.bind("SHIFT + " .. mod .. " + 1", hl.dsp.window.move({ monitor = "current", workspace = 1 }))
-hl.bind("SHIFT + " .. mod .. " + 2", hl.dsp.window.move({ monitor = "current", workspace = 2 }))
-hl.bind("SHIFT + " .. mod .. " + 3", hl.dsp.window.move({ monitor = "current", workspace = 3 }))
-hl.bind("SHIFT + " .. mod .. " + 4", hl.dsp.window.move({ monitor = "current", workspace = 4 }))
-hl.bind("SHIFT + " .. mod .. " + 5", hl.dsp.window.move({ monitor = "current", workspace = 5 }))
-hl.bind("SHIFT + " .. mod .. " + 6", hl.dsp.window.move({ monitor = "current", workspace = 6 }))
-hl.bind("SHIFT + " .. mod .. " + 7", hl.dsp.window.move({ monitor = "current", workspace = 7 }))
-hl.bind("SHIFT + " .. mod .. " + 8", hl.dsp.window.move({ monitor = "current", workspace = 8 }))
-hl.bind("SHIFT + " .. mod .. " + 9", hl.dsp.window.move({ monitor = "current", workspace = 9 }))
-hl.bind("SHIFT + " .. mod .. " + 0", hl.dsp.window.move({ monitor = "current", workspace = 10 }))
-hl.bind(mod .. " + h", hl.dsp.focus({ direction = "left" }))
-hl.bind(mod .. " + l", hl.dsp.focus({ direction = "right" }))
-hl.bind(mod .. " + k", hl.dsp.focus({ direction = "up" }))
-hl.bind(mod .. " + j", hl.dsp.focus({ direction = "down" }))
+-- workspace management with 1...9, 0 keys
+for ws = 1, 10, 1 do
+    -- 0 key for workspace 10
+    local key = (ws == 10) and 0 or ws
+    hl.bind(mod .. "+" .. key, hl.dsp.focus({ workspace = ws }))
+    hl.bind("SHIFT +" .. mod .. "+" .. key, hl.dsp.window.move({ monitor = "current", workspace = ws }))
+end
 
-hl.bind("SHIFT + " .. mod .. " + h", hl.dsp.focus({ direction = "left" }))
-hl.bind("SHIFT + " .. mod .. " + l", hl.dsp.focus({ direction = "right" }))
-hl.bind("SHIFT + " .. mod .. " + k", hl.dsp.focus({ direction = "up" }))
-hl.bind("SHIFT + " .. mod .. " + j", hl.dsp.focus({ direction = "down" }))
+-- vi like movement with hjkl
+for key, dir in pairs({ h = "l", j = "d", k = "u", l = "r" }) do
+    -- move focus
+    hl.bind(mod .. "+" .. key, hl.dsp.focus({ direction = dir }))
+    -- move window within workspace
+    hl.bind("SHIFT +" .. mod .. "+" .. key, hl.dsp.window.move({ direction = dir }))
+end
 
+
+-- other keyboard functions
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n1 set +8%"))
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n1 set 8%-"))
 
@@ -124,24 +112,31 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(playerctl .. " previous"))
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd(playerctl .. " next"))
 hl.bind("switch:Lid Switch", hl.dsp.exec_cmd(dms .. " ipc lock lock"))
 
+-- hyprshot
 hl.bind(mod .. " + s", hl.dsp.exec_cmd(hyprshot .. " -m window -m active --clipboard-only"))
 hl.bind("SHIFT + " .. mod .. " + s", hl.dsp.exec_cmd(hyprshot .. " -m window -m active --output-folder ~/Pictures"))
 hl.bind("CTRL + " .. mod .. " + s", hl.dsp.exec_cmd(hyprshot .. " -m region --clipboard-only"))
 hl.bind("CTRL + SHIFT + " .. mod .. " + s", hl.dsp.exec_cmd(hyprshot .. " -m region --output-folder ~/Pictures"))
 
+-- terminal
 hl.bind(mod .. " + return", hl.dsp.exec_cmd(terminal))
+-- dms app picker
 hl.bind(mod .. " + d", hl.dsp.exec_cmd(dms .. " ipc call spotlight toggle"))
 
+-- closing windows
 hl.bind(mod .. " + q", hl.dsp.window.close({ window = "activewindow" }))
 hl.bind("SHIFT + " .. mod .. " + q", hl.dsp.window.kill("activewindow"))
 
+-- mouse
 hl.bind(mod .. " + mouse:272", hl.dsp.window.resize(), { mouse = true })
 hl.bind("SHIFT + " .. mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 
+-- floating windows
 hl.bind(mod .. " + f", hl.dsp.window.float({
     window = "activewindow",
     action = "toggle",
 }))
+-- fullscreen
 hl.bind("SHIFT + " .. mod .. " + f", hl.dsp.window.fullscreen({
     window = "activewindow",
     action = "toggle",
@@ -166,18 +161,3 @@ hl.animation({
     speed = 1,
     bezier = ease,
 })
-
-
--- settings = {
---   env = [
---     "XCURSOR_SIZE, 16"
---     "HYPRCURSOR_SIZE,6"
---   ];
---   dwindle = {
---     pseudotile = true;
---   };
---   master.new_status = "master";
---   windowrule = [
---     "suppressevent maximize, class:.*"
---   ];
--- };
