@@ -1,14 +1,9 @@
 local vars = require("generated.variables")
-local host_config = {}
-if vars.host_config_path ~= nil then
-    _, host_config = pcall(require, vars.host_config_path)
-end
 
 local mod = vars.mod or "SUPER"
 
 local dms = vars.dms or "dms"
 local wpctl = vars.wpctl or "wpctl"
-local browser = vars.browser or "firefox"
 local hyprshot = vars.hyprshot or "hyprshot"
 local terminal = vars.terminal or "ghostty"
 local playerctl = vars.playerctl or "playerctl"
@@ -40,6 +35,8 @@ hl.config({
         repeat_delay = 250,
         repeat_rate = 40,
 
+        accel_profile = "flat",
+
         follow_mouse = 1,
     },
     ecosystem = {
@@ -48,14 +45,9 @@ hl.config({
     },
 })
 
-if host_config.config then
-    hl.config(host_config.config)
-end
-
-
 hl.on("hyprland.start", function()
-    if vars.autoStart then
-        for key, value in pairs(vars.autoStart) do
+    if vars.auto_start then
+        for key, value in pairs(vars.auto_start) do
             if key:sub(0, 2) == "ws" then
                 for _, cmd in ipairs(value) do
                     hl.exec_cmd(cmd, { workspace = key:sub(3) .. " silent" })
@@ -143,9 +135,6 @@ hl.bind("SHIFT + " .. mod .. " + f", hl.dsp.window.fullscreen({
     mode = "fullscreen",
 }))
 
-for _, m in ipairs(host_config.monitors or {}) do
-    hl.monitor(m)
-end
 local ease = "ease-in-out"
 hl.curve(
     ease,
@@ -161,3 +150,8 @@ hl.animation({
     speed = 1,
     bezier = ease,
 })
+
+local ok, host_config = pcall(require, "host_config")
+if ok then
+    host_config(hl)
+end

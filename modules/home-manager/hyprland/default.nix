@@ -22,7 +22,7 @@ let
       + "}"
     else if builtins.typeOf val == "null" then
       "nil"
-    else if builtins.typeOf val == "string" then
+    else if builtins.typeOf val == "string" || builtins.typeOf val == "path" then
       ''"${val}"''
     else
       toString val;
@@ -59,6 +59,11 @@ in
           }
       '';
     };
+    hostConfigPath = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      description = "optional host config path which will be loaded at the end of initialization";
+    };
   };
 
   config =
@@ -70,8 +75,7 @@ in
         hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
         dms = "${inputs.dank-material-shell.packages.${system}.default}/bin/dms";
 
-        autoStart = cfg.autoStart;
-        # host_config_path = "";
+        auto_start = cfg.autoStart;
       };
     in
     lib.mkIf cfg.enable {
@@ -96,20 +100,22 @@ in
         builtins.listToAttrs (
           (builtins.map (p: {
             name = "hypr/${file p}";
-            value = {
-              text = builtins.readFile p;
-            };
+            value.text = builtins.readFile p;
           }) paths)
           ++ [
             {
               name = "hypr/generated/variables.lua";
-              value = {
-                text = ''
-                  return ${luaVarsStr}
-                '';
-              };
+              value.text = ''
+                return ${luaVarsStr}
+              '';
             }
           ]
+          ++ (
+            lib.optional (cfg.hostConfigPath != null) {
+              name = "hypr/host_config.lua";
+              value.text = builtins.readFile cfg.hostConfigPath;
+            }
+          )
         );
 
       home.packages = [
