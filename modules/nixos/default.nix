@@ -23,11 +23,15 @@
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = [ ];
 
-
   environment.systemPackages = with pkgs; [
     gcc
     git
     home-manager
     vim
   ];
+
+  environment.sessionVariables = {
+    # fix GTK4 applications not recognizing key presses like backtick or grave
+    GTK_IM_MODULE = "simple";
+  };
 }
