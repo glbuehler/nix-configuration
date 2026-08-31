@@ -19,9 +19,13 @@ in
       enable32Bit = true;
     };
     services.xserver.videoDrivers = [ "amdgpu" ];
-    boot.kernelParams = [
-      "amdgpu.noretry=0"
-      "amdgpu.gpu_recovery=1"
-    ];
+    boot.kernelParams =
+      if cfg.amd_kernelparams then
+        [
+          "amdgpu.noretry=0"
+          "amdgpu.gpu_recovery=1"
+        ]
+      else
+        [ ];
   };
 }
