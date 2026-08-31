@@ -30,6 +30,7 @@
         "ws2" = [ "${pkgs.firefox}/bin/firefox" ];
         "ws10" = [ "${pkgs.discord}/bin/discord" ];
       };
+      hostConfigPath = ./hyprland.lua;
     };
     theme.enable = true;
     tmux.enable = true;
