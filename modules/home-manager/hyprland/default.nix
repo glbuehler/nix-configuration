@@ -70,12 +70,14 @@ in
     let
       luaVars = {
         mod = cfg.modKey;
+        auto_start = cfg.autoStart;
+
+        terminal = "${pkgs.ghostty}/bin/ghostty";
         wpctl = "${pkgs.wireplumber}/bin/wpctl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
+        brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
         dms = "${inputs.dank-material-shell.packages.${system}.default}/bin/dms";
-
-        auto_start = cfg.autoStart;
       };
     in
     lib.mkIf cfg.enable {
