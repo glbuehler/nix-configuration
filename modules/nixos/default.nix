@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
     ./amdgpu
@@ -23,12 +23,15 @@
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = [ ];
 
-  environment.systemPackages = with pkgs; [
-    gcc
-    git
-    home-manager
-    vim
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      gcc
+      git
+      home-manager
+      vim
+    ]
+    ++ lib.optional config.modules.amdgpu.enable pkgs.amdgpu_top;
 
   environment.sessionVariables = {
     # fix GTK4 applications not recognizing key presses like backtick or grave
