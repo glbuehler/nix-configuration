@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 {
   imports = [
+    ./aerospace
     ./browser
     ./fish
     ./ghostty
@@ -11,14 +12,10 @@
     inputs.dank-material-shell.homeModules.dank-material-shell
   ];
 
-  programs.dank-material-shell.enable = true;
-
   news.display = "silent";
 
   home.packages = with pkgs; [
     discord
-    gimp
-    kdePackages.dolphin
 
     yazi
     yaziPlugins.drag
@@ -29,7 +26,6 @@
     fastfetch
     htop
     libnotify
-    wl-clipboard
 
     nvim-pkg
 
@@ -38,8 +34,6 @@
     gnutar
 
     # fonts
-    font-awesome
-    nerd-fonts.droid-sans-mono
   ];
 
   services.dunst.enable = true;

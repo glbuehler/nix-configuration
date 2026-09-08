@@ -16,14 +16,17 @@ in
   config = lib.mkIf cfg.enable {
     programs.fish.enable = true;
     users.users.gideon = {
-      isNormalUser = true;
       description = "gideon";
       shell = pkgs.fish;
+    } // (if pkgs.stdenv.hostPlatform.isLinux then {
+      isNormalUser = true;
       extraGroups = [
         "wheel"
         "networkmanager"
         "power"
       ];
-    };
+    } else {
+      home = "/Users/gideon";
+    });
   };
 }

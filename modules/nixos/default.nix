@@ -5,7 +5,6 @@
     ./bluetooth
     ./boot
     ./desktop
-    ./desktop
     ./gaming
     ./greeter
     ./hyprland
