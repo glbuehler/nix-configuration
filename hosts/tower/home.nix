@@ -35,4 +35,8 @@
     theme.enable = true;
     tmux.enable = true;
   };
+
+  home.packages = [
+    pkgs.prismlauncher
+  ];
 }
