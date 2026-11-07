@@ -15,10 +15,15 @@
     ./tmpfs
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = [
+      "@wheel"
+    ];
+  };
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = [ ];
