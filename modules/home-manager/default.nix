@@ -36,6 +36,7 @@
     zip
     unzip
     gnutar
+    ripgrep
 
     # fonts
     font-awesome
